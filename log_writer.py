@@ -125,7 +125,9 @@ class LogWriter(object):
 		# - string "0 O 0 O 0 O 0 O 0 O 0 O"
 		# - output of get_second_part applied on computation method (class member)
 		#return the concatenation
-		pass
+		# pass
+		magic_string = "0 O 0 O 0 O 0 O 0 O 0 O"
+		return "{}{}{}".format(get_first_part(), magic_string, get_second_part(computation))
 
 	def __str__(self):
 		return self.combining_method()
