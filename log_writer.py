@@ -40,7 +40,14 @@ class LogWriter(object):
 		#
 		#e.g:
 		# insert_data_in_text("AAAA list BBBB", [1,2,3]) = "AAAA list ([1, 2, 3]) BBBB"
-		pass
+		a = text.find("list")
+		b = text.rfind("list")
+		if a != -1:
+			result = "{} ({}) {}".format(text[:b + 1], str(data),text[b:])
+			return result		
+		else:
+			return text		
+		
 
 	@staticmethod
 	def count_o(text):
