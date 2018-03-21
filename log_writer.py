@@ -21,12 +21,14 @@ class LogWriter(object):
 
 	@staticmethod
 	def avg_every_second_element(data):
-		#2
-		#return the average of every second element 
-		#(use function get_every_second_element )
-		#e.g:
-		# avg_every_second_element([1,2,3,4]) == 3.0
-		pass
+		input_data = get_every_second_element()
+		sum_data = 0
+		for x in input_data:
+			sum_data += x
+		how_many_elements = len(input_data)
+
+		return sum_data / how_many_elements
+
 
 	@staticmethod
 	def insert_data_in_text(text, data):
@@ -72,7 +74,7 @@ class LogWriter(object):
 		#8
 		# if the argument is not specified return "To seek the holy grail"
 		# in other case append the texts "To seek the " with argument and return
-		pass
+		return "To seek the {}".format(quest)
 
 	@staticmethod
 	def get_second_word(text):
@@ -117,6 +119,9 @@ class LogWriter(object):
 		# - the value of function computation (in argument)
 		# applied on number 47 
 		# to the output of get_movie_reference
+
+		get_movie_reference(self).append("\n")
+		get_movie_reference(self).append(computation(47))
 		pass
 
 	def combining_method(self):
@@ -139,7 +144,7 @@ if __name__=="__main__":
 	"""
 	list_data = [1,2,34,4]
 	test_instance = LogWriter(list_data, head_text)
-	print(test_instance)
+	#print(test_instance)
 
 #
 #examplary output is below
