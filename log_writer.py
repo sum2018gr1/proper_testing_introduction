@@ -66,8 +66,8 @@ class LogWriter(object):
 		#Set member o_count with number of o's in contained 
 		# in text you created above - use count_o.
 		# Return newly created text AND value of o_count
-		new_text = "\n After change: \n" +"_________"
-		to_return_text = LogWriter.insert_data_in_text(self.head_text,new_text)
+		new_text =  self.head_text + "_________"+"\n After change: \n"
+		to_return_text = LogWriter.insert_data_in_text(new_text,self.list_data)
 		self.o_count = LogWriter.count_o(to_return_text)
 		return to_return_text, self.o_count
 
