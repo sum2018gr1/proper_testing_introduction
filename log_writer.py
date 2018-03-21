@@ -84,7 +84,7 @@ class LogWriter(object):
 		#10
 		# return True if o_count is even
 		# return False is o_count is odd	
-		if self.o_count % 2:
+		if isistance(self.o_count, int) and self.o_count % 2:
 			return True
 		else:
 			return False
