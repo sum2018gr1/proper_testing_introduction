@@ -96,9 +96,12 @@ class LogWriter(object):
 	def o_count_is_even(self):
 		#10
 		# return True if o_count is even
-		# return False is o_count is odd
-		pass
-
+		# return False is o_count is odd	
+		if isinstance(self.o_count, int) and self.o_count % 2:
+			return True
+		else:
+			return False
+		
 	def get_movie_reference(self):
 		#11
 		#this is the tough one
@@ -109,9 +112,14 @@ class LogWriter(object):
 		#the second word of head_text (member of this object).
 		#Lastly if o_count is higher than seven append empty line and
 		#empty call of what_is_your_quest to the output.
-		#Return the output
-		pass
-
+		#Return the output 
+		if self.o_count_is_even():
+			output = LogWriter.what_is_added_the_meaning_of_life(self.o_count)
+		else:
+			output = LogWriter.what_is_your_quest(self.get_second_word(self.head_text))
+		if(self.o_count > 7):
+			output  = "{}\n{}".format(output,self.what_is_your_quest())
+		return output
 	@staticmethod
 	def computation(x):
 		#12
