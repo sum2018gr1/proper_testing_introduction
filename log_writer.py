@@ -40,7 +40,14 @@ class LogWriter(object):
 		#
 		#e.g:
 		# insert_data_in_text("AAAA list BBBB", [1,2,3]) = "AAAA list ([1, 2, 3]) BBBB"
-		pass
+		a = text.find("list")
+		b = text.rfind("list")
+		if a != -1:
+			result = "{} ({}) {}".format(text[:b + 1], str(data),text[b:])
+			return result		
+		else:
+			return text		
+		
 
 	@staticmethod
 	def count_o(text):
@@ -59,22 +66,26 @@ class LogWriter(object):
 		#Set member o_count with number of o's in contained 
 		# in text you created above - use count_o.
 		# Return newly created text AND value of o_count
-		pass
+		new_text = "\n After change: \n" +"_________"
+		to_return_text = LogWriter.insert_data_in_text(self.head_text,new_text)
+		self.o_count = LogWriter.count_o(to_return_text)
+		return to_return_text, self.o_count
 
 	@staticmethod
-	def what_is_added_the_meaning_of_life(add):
+	def what_is_added_the_meaning_of_life(add=None):
 		#6
 		#return square root of 42 PLUS add
-		# if add is not given return 42 
+		# if add is not given return sqr(42) 
 		#
-		pass
+		
+		return math.sqrt(42+add)
 
 	@staticmethod
 	def what_is_your_quest(quest="holy grail"):
 		#8
 		# if the argument is not specified return "To seek the holy grail"
 		# in other case append the texts "To seek the " with argument and return
-		pass
+		return "To seek the {}".format(quest)
 
 	@staticmethod
 	def get_second_word(text):
@@ -85,9 +96,12 @@ class LogWriter(object):
 	def o_count_is_even(self):
 		#10
 		# return True if o_count is even
-		# return False is o_count is odd
-		pass
-
+		# return False is o_count is odd	
+		if isinstance(self.o_count, int) and self.o_count % 2:
+			return True
+		else:
+			return False
+		
 	def get_movie_reference(self):
 		#11
 		#this is the tough one
@@ -98,9 +112,14 @@ class LogWriter(object):
 		#the second word of head_text (member of this object).
 		#Lastly if o_count is higher than seven append empty line and
 		#empty call of what_is_your_quest to the output.
-		#Return the output
-		pass
-
+		#Return the output 
+		if self.o_count_is_even():
+			output = LogWriter.what_is_added_the_meaning_of_life(self.o_count)
+		else:
+			output = LogWriter.what_is_your_quest(self.get_second_word(self.head_text))
+		if(self.o_count > 7):
+			output  = "{}\n{}".format(output,self.what_is_your_quest())
+		return output
 	@staticmethod
 	def computation(x):
 		#12
@@ -119,6 +138,9 @@ class LogWriter(object):
 		# - the value of function computation (in argument)
 		# applied on number 47 
 		# to the output of get_movie_reference
+
+		get_movie_reference(self).append("\n")
+		get_movie_reference(self).append(computation(47))
 		pass
 
 	def combining_method(self):
@@ -128,7 +150,9 @@ class LogWriter(object):
 		# - string "0 O 0 O 0 O 0 O 0 O 0 O"
 		# - output of get_second_part applied on computation method (class member)
 		#return the concatenation
-		pass
+		# pass
+		magic_string = "0 O 0 O 0 O 0 O 0 O 0 O"
+		return "{}{}{}".format(get_first_part(), magic_string, get_second_part(computation))
 
 	def __str__(self):
 		return self.combining_method()
@@ -139,7 +163,7 @@ if __name__=="__main__":
 	"""
 	list_data = [1,2,34,4]
 	test_instance = LogWriter(list_data, head_text)
-	print(test_instance)
+	#print(test_instance)
 
 #
 #examplary output is below
