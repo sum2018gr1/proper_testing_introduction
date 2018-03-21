@@ -21,7 +21,7 @@ class LogWriter(object):
 
 	@staticmethod
 	def avg_every_second_element(data):
-		input_data = get_every_second_element()
+		input_data = LogWriter.get_every_second_element(data)
 		sum_data = 0
 		for x in input_data:
 			sum_data += x
@@ -72,12 +72,13 @@ class LogWriter(object):
 		return to_return_text, self.o_count
 
 	@staticmethod
-	def what_is_added_the_meaning_of_life(add=0):
+	def what_is_added_the_meaning_of_life(add=None):
 		#6
 		#return square root of 42 PLUS add
 		# if add is not given return sqr(42) 
 		#
-			return sqrt(42+add)
+		
+		return math.sqrt(42+add)
 
 	@staticmethod
 	def what_is_your_quest(quest="holy grail"):
@@ -95,9 +96,12 @@ class LogWriter(object):
 	def o_count_is_even(self):
 		#10
 		# return True if o_count is even
-		# return False is o_count is odd
-		pass
-
+		# return False is o_count is odd	
+		if isinstance(self.o_count, int) and self.o_count % 2:
+			return True
+		else:
+			return False
+		
 	def get_movie_reference(self):
 		#11
 		#this is the tough one
@@ -108,9 +112,14 @@ class LogWriter(object):
 		#the second word of head_text (member of this object).
 		#Lastly if o_count is higher than seven append empty line and
 		#empty call of what_is_your_quest to the output.
-		#Return the output
-		pass
-
+		#Return the output 
+		if self.o_count_is_even():
+			output = LogWriter.what_is_added_the_meaning_of_life(self.o_count)
+		else:
+			output = LogWriter.what_is_your_quest(self.get_second_word(self.head_text))
+		if(self.o_count > 7):
+			output  = "{}\n{}".format(output,self.what_is_your_quest())
+		return output
 	@staticmethod
 	def computation(x):
 		#12
@@ -141,7 +150,9 @@ class LogWriter(object):
 		# - string "0 O 0 O 0 O 0 O 0 O 0 O"
 		# - output of get_second_part applied on computation method (class member)
 		#return the concatenation
-		pass
+		# pass
+		magic_string = "0 O 0 O 0 O 0 O 0 O 0 O"
+		return "{}{}{}".format(get_first_part(), magic_string, get_second_part(computation))
 
 	def __str__(self):
 		return self.combining_method()
