@@ -21,12 +21,14 @@ class LogWriter(object):
 
 	@staticmethod
 	def avg_every_second_element(data):
-		#2
-		#return the average of every second element 
-		#(use function get_every_second_element )
-		#e.g:
-		# avg_every_second_element([1,2,3,4]) == 3.0
-		pass
+		input_data = get_every_second_element()
+		sum_data = 0
+		for x in input_data:
+			sum_data += x
+		how_many_elements = len(input_data)
+
+		return sum_data / how_many_elements
+
 
 	@staticmethod
 	def insert_data_in_text(text, data):
@@ -38,7 +40,14 @@ class LogWriter(object):
 		#
 		#e.g:
 		# insert_data_in_text("AAAA list BBBB", [1,2,3]) = "AAAA list ([1, 2, 3]) BBBB"
-		pass
+		a = text.find("list")
+		b = text.rfind("list")
+		if a != -1:
+			result = "{} ({}) {}".format(text[:b + 1], str(data),text[b:])
+			return result		
+		else:
+			return text		
+		
 
 	@staticmethod
 	def count_o(text):
@@ -57,28 +66,31 @@ class LogWriter(object):
 		#Set member o_count with number of o's in contained 
 		# in text you created above - use count_o.
 		# Return newly created text AND value of o_count
-		pass
+		new_text = "\n After change: \n" +"_________"
+		to_return_text = LogWriter.insert_data_in_text(self.head_text,new_text)
+		self.o_count = LogWriter.count_o(to_return_text)
+		return to_return_text, self.o_count
 
 	@staticmethod
-	def what_is_added_the_meaning_of_life(add):
+	def what_is_added_the_meaning_of_life(add=0):
 		#6
 		#return square root of 42 PLUS add
-		# if add is not given return 42 
+		# if add is not given return sqr(42) 
 		#
-		pass
+			return sqrt(42+add)
 
 	@staticmethod
 	def what_is_your_quest(quest="holy grail"):
 		#8
 		# if the argument is not specified return "To seek the holy grail"
 		# in other case append the texts "To seek the " with argument and return
-		pass
+		return "To seek the {}".format(quest)
 
 	@staticmethod
 	def get_second_word(text):
 		#9
 		# Return the second word of text
-		pass
+		return text.split()[1]
 
 	def o_count_is_even(self):
 		#10
@@ -120,6 +132,9 @@ class LogWriter(object):
 		# - the value of function computation (in argument)
 		# applied on number 47 
 		# to the output of get_movie_reference
+
+		get_movie_reference(self).append("\n")
+		get_movie_reference(self).append(computation(47))
 		pass
 
 	def combining_method(self):
@@ -140,7 +155,7 @@ if __name__=="__main__":
 	"""
 	list_data = [1,2,34,4]
 	test_instance = LogWriter(list_data, head_text)
-	print(test_instance)
+	#print(test_instance)
 
 #
 #examplary output is below
