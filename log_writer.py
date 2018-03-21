@@ -17,7 +17,7 @@ class LogWriter(object):
 		#1
 		# return every second element (counting from index 1) from passed list 
 		# e.g. get_every_second_element([1,2,3,4]) == [2,4]
-		pass
+		return data[1::2]
 
 	@staticmethod
 	def avg_every_second_element(data):
@@ -46,7 +46,7 @@ class LogWriter(object):
 		#Count occurances of character 'o' in text
 		#e.g.:
 		# count_o("oOo0O00o") == 5
-		pass
+		return text.lower().count('o')
 
 	def get_first_part(self):
 		#5
@@ -109,6 +109,7 @@ class LogWriter(object):
 		# x to the second power
 		# square root of x
 		# square root of the square root of x
+		return x**2 + math.sqrt(x) + math.sqrt(math.sqrt(x))
 		pass
 
 	def get_second_part(self, computation=None):
