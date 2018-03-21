@@ -62,12 +62,12 @@ class LogWriter(object):
 		pass
 
 	@staticmethod
-	def what_is_added_the_meaning_of_life(add):
+	def what_is_added_the_meaning_of_life(add=0):
 		#6
 		#return square root of 42 PLUS add
-		# if add is not given return 42 
+		# if add is not given return sqr(42) 
 		#
-		pass
+			return sqrt(42+add)
 
 	@staticmethod
 	def what_is_your_quest(quest="holy grail"):
