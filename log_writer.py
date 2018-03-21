@@ -119,6 +119,9 @@ class LogWriter(object):
 		# - the value of function computation (in argument)
 		# applied on number 47 
 		# to the output of get_movie_reference
+
+		get_movie_reference(self).append("\n")
+		get_movie_reference(self).append(computation(47))
 		pass
 
 	def combining_method(self):
@@ -139,7 +142,7 @@ if __name__=="__main__":
 	"""
 	list_data = [1,2,34,4]
 	test_instance = LogWriter(list_data, head_text)
-	print(test_instance)
+	#print(test_instance)
 
 #
 #examplary output is below
