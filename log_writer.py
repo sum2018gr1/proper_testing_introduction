@@ -21,7 +21,7 @@ class LogWriter(object):
 
 	@staticmethod
 	def avg_every_second_element(data):
-		input_data = get_every_second_element(data)
+		input_data = LogWriter.get_every_second_element(data)
 		sum_data = 0
 		for x in input_data:
 			sum_data += x
