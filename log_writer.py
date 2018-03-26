@@ -152,7 +152,7 @@ class LogWriter(object):
 		#return the concatenation
 		# pass
 		magic_string = "0 O 0 O 0 O 0 O 0 O 0 O"
-		return "{}{}{}".format(get_first_part(), magic_string, get_second_part(computation))
+		return "{}{}{}".format(self.get_first_part(), magic_string, LogWriter.computation(self.get_second_part()))
 
 	def __str__(self):
 		return self.combining_method()
