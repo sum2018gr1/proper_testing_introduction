@@ -37,13 +37,13 @@ class LogWriter(object):
 		#
 		#e.g:
 		# insert_data_in_text("AAAA list BBBB", [1,2,3]) = "AAAA list ([1, 2, 3]) BBBB"
-		a = text.find("list")
-		b = text.rfind("list")
-		if a != -1:
-			result = "{} ({}){}".format(text[:b + 1], str(data),text[b:])
+		l_index = text.find("list")
+		r_index = text.rfind("list")		
+		if not l_index == -1 and l_index == r_index:
+			result = "{} ({}){}".format(text[:l_index+4], str(data),text[l_index+4:])
 			return result		
 		else:
-			return text		
+			return text	
 		
 
 	@staticmethod
