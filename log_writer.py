@@ -21,13 +21,10 @@ class LogWriter(object):
 
 	@staticmethod
 	def avg_every_second_element(data):
-		input_data = LogWriter.get_every_second_element(data)
-		sum_data = 0
-		for x in input_data:
-			sum_data += x
-		how_many_elements = len(input_data)
-
-		return sum_data / how_many_elements
+		every_second_element = LogWriter.get_every_second_element(data)
+		sum_of_all_elements = sum(every_second_element)
+		average = sum_of_all_elements / len(every_second_element)
+		return average
 
 
 	@staticmethod
@@ -43,7 +40,7 @@ class LogWriter(object):
 		a = text.find("list")
 		b = text.rfind("list")
 		if a != -1:
-			result = "{} ({}) {}".format(text[:b + 1], str(data),text[b:])
+			result = "{} ({}){}".format(text[:b + 1], str(data),text[b:])
 			return result		
 		else:
 			return text		
@@ -98,12 +95,14 @@ class LogWriter(object):
 		#10
 		# return True if o_count is even
 		# return False is o_count is odd	
-		if isinstance(self.o_count, int) and self.o_count % 2:
-			return True
-		else:
+		if self.o_count == None:
+			self.o_count = 1
+		if self.o_count % 2 != 0:
 			return False
+		else:
+			return True
 		
-	def get_movie_reference(self):
+	def get_movie_reference(self, roundMovie = False):
 		#11
 		#this is the tough one
 		#use o_count is even (use o_count_is_even())
@@ -114,13 +113,18 @@ class LogWriter(object):
 		#Lastly if o_count is higher than seven append empty line and
 		#empty call of what_is_your_quest to the output.
 		#Return the output 
+		output = ""
 		if self.o_count_is_even():
-			output = LogWriter.what_is_added_the_meaning_of_life(self.o_count)
+			output_number = round(self.what_is_added_the_meaning_of_life(self.o_count), 11) if roundMovie else (self.what_is_added_the_meaning_of_life(self.o_count))
+			output += "{}".format(output_number)
 		else:
-			output = LogWriter.what_is_your_quest(self.get_second_word(self.head_text))
-		if(self.o_count > 7):
-			output  = "{}\n{}".format(output,self.what_is_your_quest())
+			output += self.what_is_your_quest(self.get_second_word(self.head_text))
+
+		if self.o_count > 7:
+			output += "\n" + self.what_is_your_quest()
+
 		return output
+
 	@staticmethod
 	def computation(x):
 		#12
@@ -128,10 +132,9 @@ class LogWriter(object):
 		# x to the second power
 		# square root of x
 		# square root of the square root of x
-		return x**2 + math.sqrt(x) + math.sqrt(math.sqrt(x))
-		pass
+		return x**2 + math.sqrt(x) + math.sqrt(math.sqrt(x))		
 
-	def get_second_part(self, computation=None):
+	def get_second_part(self, computation=None, roundMovie = False):
 		#13
 		# append the:
 		# - new line 
@@ -140,9 +143,12 @@ class LogWriter(object):
 		# applied on number 47 
 		# to the output of get_movie_reference
 
-		get_movie_reference(self).append("\n")
-		get_movie_reference(self).append(computation(47))
-		pass
+		output = self.get_movie_reference(roundMovie)
+		if computation != None:
+			output += "\n"
+			output += "{}".format(round(computation(47), 7))
+
+		return output
 
 	def combining_method(self):
 		#14
@@ -152,8 +158,11 @@ class LogWriter(object):
 		# - output of get_second_part applied on computation method (class member)
 		#return the concatenation
 		# pass
-		magic_string = "0 O 0 O 0 O 0 O 0 O 0 O"
-		return "{}{}{}".format(self.get_first_part(), magic_string, LogWriter.computation(self.get_second_part()))
+		result = self.get_first_part()[0]
+		result += '0 O 0 O 0 O 0 O 0 O 0 O'
+		result += str(self.get_second_part(LogWriter.computation, True))
+
+		return result
 
 	def __str__(self):
 		return self.combining_method()
